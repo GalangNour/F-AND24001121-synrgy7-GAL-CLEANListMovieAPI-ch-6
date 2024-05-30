@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">challenge_ch6</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tvWelcome">Welcome, Username</string>
+    <string name="tvFavourite">Favourite</string>
+    <string name="tvLogout">Logout</string>
+    <string name="page_title">Home</string>
+    <string name="movie_overview">Movie Overview</string>
+    <string name="movie_title">Movie Title</string>
+</resources>
