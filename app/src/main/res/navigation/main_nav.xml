@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_listFragment_to_detailMovieFragment"
             app:destination="@id/detailMovieFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
@@ -22,5 +25,14 @@
         <argument
             android:name="movieId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.challenge_ch6.ui.main.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
     </fragment>
 </navigation>

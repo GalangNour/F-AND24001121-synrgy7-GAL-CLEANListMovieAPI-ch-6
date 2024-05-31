@@ -4,7 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.Resource
+import com.example.domain.model.MovieDetail
+import com.example.domain.usecase.AddFavouriteMovieUseCase
 import com.example.domain.usecase.GetMovieDetailUseCase
+import com.example.domain.usecase.GetMovieFavouriteUseCase
 import com.example.domain.usecase.GetMovieListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -14,7 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val getMoviesUseCase: GetMovieListUseCase,
-    private val getMovieDetailUseCase: GetMovieDetailUseCase
+    private val getMovieDetailUseCase: GetMovieDetailUseCase,
+    private val addFavouriteMovieUseCase: AddFavouriteMovieUseCase,
+    private val getFavouriteMoviesUseCase: GetMovieFavouriteUseCase
 ) : ViewModel() {
 
     private val _MovieListState = MutableLiveData<MovieListState>()
@@ -22,6 +27,9 @@ class MovieViewModel @Inject constructor(
 
     private val _MovieDetailState = MutableLiveData<MovieDetailState>()
     val movieDetailState = _MovieDetailState
+
+    private val _MovieListFavouriteState = MutableLiveData<FavouriteMovieListState>()
+    val movieListFavouriteState = _MovieListFavouriteState
 
 
     fun fetchMoviePlayingNow(){
@@ -53,6 +61,32 @@ class MovieViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     _MovieDetailState.value = MovieDetailState.Loading()
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun addFavouriteMovie(movieDetail: MovieDetail) {
+        addFavouriteMovieUseCase(movieDetail).launchIn(viewModelScope)
+    }
+
+    fun getFavouriteMovies() {
+        getFavouriteMoviesUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _MovieListFavouriteState.value =
+                        result.data?.let { FavouriteMovieListState.Success(it) }
+                }
+
+                is Resource.Error -> {
+                    _MovieListFavouriteState.value =
+                        FavouriteMovieListState.Error(
+                            result.message ?: "An unexpected error occurred"
+                        )
+                }
+
+                is Resource.Loading -> {
+                    _MovieListFavouriteState.value = FavouriteMovieListState.Loading()
                 }
             }
         }.launchIn(viewModelScope)

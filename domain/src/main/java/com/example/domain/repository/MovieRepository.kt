@@ -7,4 +7,8 @@ interface MovieRepository {
     suspend fun getMovieList() : MovieList
 
     suspend fun getMovieDetail(movieId : Int) : MovieDetail
+
+    suspend fun addFavoriteMovie(movie: MovieDetail)
+
+    suspend fun getFavoriteMovieList() : List<MovieDetail>
 }
