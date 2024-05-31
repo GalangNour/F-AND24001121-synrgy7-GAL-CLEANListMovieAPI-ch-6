@@ -3,6 +3,9 @@ package com.example.challenge_ch6.ui.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.challenge_ch6.ui.state.FavouriteMovieListState
+import com.example.challenge_ch6.ui.state.MovieDetailState
+import com.example.challenge_ch6.ui.state.MovieListState
 import com.example.common.Resource
 import com.example.domain.model.MovieDetail
 import com.example.domain.usecase.AddFavouriteMovieUseCase

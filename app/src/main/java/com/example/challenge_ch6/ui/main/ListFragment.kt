@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge_ch6.databinding.FragmentListBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
+import com.example.challenge_ch6.ui.state.MovieListState
 import com.example.domain.model.MovieDetail
 import dagger.hilt.android.AndroidEntryPoint
 

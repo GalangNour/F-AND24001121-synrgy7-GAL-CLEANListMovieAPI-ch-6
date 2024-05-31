@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge_ch6.databinding.FragmentFavouriteBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
+import com.example.challenge_ch6.ui.state.FavouriteMovieListState
 import com.example.domain.model.MovieDetail
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.challenge_ch6.databinding.FragmentDetailMovieBinding
+import com.example.challenge_ch6.ui.state.MovieDetailState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

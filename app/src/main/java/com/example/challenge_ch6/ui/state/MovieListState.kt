@@ -1,4 +1,4 @@
-package com.example.challenge_ch6.ui.main
+package com.example.challenge_ch6.ui.state
 
 import com.example.domain.model.MovieList
 

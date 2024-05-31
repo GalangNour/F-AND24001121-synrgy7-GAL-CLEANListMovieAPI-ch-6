@@ -5,9 +5,12 @@ import androidx.room.Room
 import com.example.common.Constant
 import com.example.data.database.AppDatabase
 import com.example.data.database.MovieFavoriteDao
+import com.example.data.database.UserDao
 import com.example.data.network.ApiService
 import com.example.data.repository.MovieRepositoryImpl
+import com.example.data.repository.UserRepositoryImpl
 import com.example.domain.repository.MovieRepository
+import com.example.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,6 +62,15 @@ object DataModule{
     @Provides
     fun provideGetMovieRepository(apiService: ApiService, movieFavoriteDao: MovieFavoriteDao) :  MovieRepository{
         return MovieRepositoryImpl(apiService = apiService, movieDao = movieFavoriteDao)
+    }
+    @Provides
+    fun provideUserRepository(userDao: UserDao): UserRepository {
+        return UserRepositoryImpl(userDao = userDao)
+    }
+
+    @Provides
+    fun provideUserDao(appDatabase: AppDatabase): UserDao {
+        return appDatabase.userDao()
     }
 
 
