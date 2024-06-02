@@ -26,12 +26,12 @@
         android:contentDescription="@string/tvFavourite"
         app:icon="@drawable/baseline_favorite_border_24"
         android:layout_margin="4dp"
-        app:layout_constraintEnd_toStartOf="@id/btnLogout"
+        app:layout_constraintEnd_toStartOf="@id/btnUser"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         style="?attr/materialIconButtonFilledStyle"
-        android:id="@+id/btnLogout"
+        android:id="@+id/btnUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/tvLogout"

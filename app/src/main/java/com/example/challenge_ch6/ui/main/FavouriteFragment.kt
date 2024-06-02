@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge_ch6.databinding.FragmentFavouriteBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
@@ -64,6 +65,11 @@ class FavouriteFragment : Fragment(),AdapterMovie.OnNoteItemClickListener {
     }
 
     private fun initView() {
+        binding.toolbar.btnFavourite.visibility = View.GONE
+        binding.toolbar.btnUser.visibility = View.GONE
+        binding.toolbar.tvPageTitle.text = "Favourite"
+        binding.toolbar.tvWelcome.visibility = View.GONE
+
         lm = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvMoviePlayingNow.apply {
             itemAnimator = null
@@ -72,6 +78,9 @@ class FavouriteFragment : Fragment(),AdapterMovie.OnNoteItemClickListener {
     }
 
     override fun onItemClick(movieDetail: MovieDetail) {
+        viewModel.getDetailMovie(movieDetail.id)
+        val action = FavouriteFragmentDirections.actionFavouriteFragmentToDetailMovieFragment(movieDetail.id)
+        findNavController().navigate(action)
 
     }
 }

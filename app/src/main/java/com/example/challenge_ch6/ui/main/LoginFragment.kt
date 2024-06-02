@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.challenge_ch6.SharedPreferences
 import com.example.challenge_ch6.databinding.FragmentLoginBinding
 import com.example.challenge_ch6.ui.state.UserState
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,13 +20,13 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: UserViewModel
+    private lateinit var userViewModel: UserViewModel
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 
     }
@@ -53,16 +54,17 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }else{
+                userViewModel.loginUser(username, password)
 
-                viewModel.loginUser(username, password)
-
-                viewModel.userState.observe(viewLifecycleOwner) { state ->
+                userViewModel.userState.observe(viewLifecycleOwner) { state ->
                     when (state) {
                         is UserState.Success -> {
+                            Toast.makeText(requireContext(), "Login Success, welcome back ${state.user.userName}", Toast.LENGTH_SHORT).show()
+                            // Navigate to ListFragment after userCurrent is updated
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToListFragment())
                         }
                         is UserState.Error -> {
-                            Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
                             Log.e("LoginFragment", state.error)
                         }
                         is UserState.Loading -> {
@@ -70,7 +72,6 @@ class LoginFragment : Fragment() {
                         }
                     }
                 }
-                Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
             }
         }
 

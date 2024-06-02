@@ -17,6 +17,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        renderscriptTargetApi = 21
+        renderscriptSupportModeEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,6 +52,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation ("com.google.dagger:hilt-android:2.51.1")
+    implementation(libs.androidx.work.runtime.ktx)
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
     kapt ("androidx.hilt:hilt-compiler:1.0.0")
 

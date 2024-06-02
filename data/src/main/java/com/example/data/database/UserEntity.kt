@@ -8,10 +8,10 @@ import com.example.domain.model.User
 @Entity(tableName = "user")
 data class UserEntity (
     @PrimaryKey val userName: String,
-    @ColumnInfo(name = "email") val userEmail: String,
-    @ColumnInfo(name = "password") val userPassword: String
+    @ColumnInfo(name = "password") val userPassword: String,
+    @ColumnInfo(name = "email") val userEmail: String
 ) {
     fun toDomain(): User {
-        return User(userName, userEmail, userPassword)
+        return User(userName, userPassword, userEmail)
     }
 }

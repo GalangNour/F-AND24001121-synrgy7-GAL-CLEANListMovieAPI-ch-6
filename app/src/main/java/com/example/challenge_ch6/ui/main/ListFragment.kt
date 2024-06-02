@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.challenge_ch6.SharedPreferences
 import com.example.challenge_ch6.databinding.FragmentListBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
 import com.example.challenge_ch6.ui.state.MovieListState
+import com.example.challenge_ch6.ui.state.UserState
 import com.example.domain.model.MovieDetail
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,11 +25,13 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
     private lateinit var movieAdapter: AdapterMovie
 
     private lateinit var viewModel: MovieViewModel
+    private lateinit var userViewModel: UserViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
     }
 
 
@@ -43,11 +47,6 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-
-        binding.toolbar.btnFavourite.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToFavouriteFragment()
-            findNavController().navigate(action)
-        }
 
         viewModel.fetchMoviePlayingNow()
 
@@ -71,6 +70,21 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
     }
 
     private fun initView() {
+
+        binding.toolbar.tvWelcome.text = "Welcome, ${SharedPreferences.username}"
+
+        binding.toolbar.tvPageTitle.text = "Home"
+//        binding.toolbar.tvWelcome.text = "Welcome, ${SharedPreferences.username}"
+        binding.toolbar.btnFavourite.setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToFavouriteFragment()
+            findNavController().navigate(action)
+        }
+        binding.toolbar.btnUser.setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToUserFragment()
+            findNavController().navigate(action)
+        }
+
+
         lm = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvMoviePlayingNow.apply {
             itemAnimator = null
