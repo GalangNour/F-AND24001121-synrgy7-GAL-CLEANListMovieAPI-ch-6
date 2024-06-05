@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.background.workers
+package com.example.common.workers
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
@@ -28,8 +25,6 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.common.Constant.KEY_IMAGE_URI
-import java.io.File
-import java.io.FileOutputStream
 
 private const val TAG = "BlurWorker"
 class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
@@ -68,17 +63,5 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
             throwable.printStackTrace()
             Result.failure()
         }
-    }
-
-    fun saveDrawableToFile(context: Context, drawable: Drawable, filename: String): Uri? {
-        if (drawable is BitmapDrawable) {
-            val bitmap = drawable.bitmap
-            val file = File(context.filesDir, filename)
-            val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            outputStream.close()
-            return Uri.fromFile(file)
-        }
-        return null
     }
 }

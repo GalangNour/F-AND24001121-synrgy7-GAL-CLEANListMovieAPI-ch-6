@@ -9,11 +9,11 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("movie/now_playing")
-    suspend fun getMovieNowPlaying(@Header("Authorization") apiBearer : String = ApiKey.apiBearer) : Response<MovieListResponse>
+    suspend fun getMovieNowPlaying(@Header("Authorization") apiBearer : String = ApiKey.APIBEARER) : Response<MovieListResponse>
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
-        @Header("Authorization") apiBearer : String = ApiKey.apiBearer,
+        @Header("Authorization") apiBearer : String = ApiKey.APIBEARER,
         @Path("movie_id") movieId : Int
     ) : Response<MovieDetailResponse>
 }

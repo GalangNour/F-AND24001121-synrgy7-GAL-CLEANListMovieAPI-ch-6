@@ -28,12 +28,12 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.example.background.workers.BlurWorker
-import com.example.background.workers.CleanupWorker
 import com.example.common.Constant.IMAGE_MANIPULATION_WORK_NAME
 import com.example.common.Constant.KEY_IMAGE_URI
 import com.example.common.Constant.TAG_OUTPUT
-import com.example.common.SaveImageToFileWorker
+import com.example.common.workers.BlurWorker
+import com.example.common.workers.CleanupWorker
+import com.example.common.workers.SaveImageToFileWorker
 
 class BlurViewModel(application: Application) : ViewModel() {
 
@@ -47,10 +47,7 @@ class BlurViewModel(application: Application) : ViewModel() {
     private val workManager = WorkManager.getInstance(application)
     internal val outputWorkInfos: LiveData<List<WorkInfo>> = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
 
-    init {
-        // This transformation makes sure that whenever the current work Id changes the WorkInfo
-        // the UI is listening to changes
-    }
+
 
     internal fun cancelWork() {
         workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)

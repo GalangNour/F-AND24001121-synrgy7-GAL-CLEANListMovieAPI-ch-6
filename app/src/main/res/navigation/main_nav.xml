@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/userFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -59,5 +59,9 @@
         android:id="@+id/userFragment"
         android:name="com.example.challenge_ch6.ui.main.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

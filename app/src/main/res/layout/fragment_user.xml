@@ -24,6 +24,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="15dp"
+        android:contentDescription="Image Profile, Select to change"
         android:src="@drawable/user_1077114"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/editTextUsername"
@@ -32,9 +33,10 @@
 
     <Button
         android:id="@+id/btnApplyBlur"
-        text="@string/apply_blur"
+        android:text="@string/apply_blur"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
         app:layout_constraintEnd_toEndOf="@+id/imgProfile"
         app:layout_constraintStart_toStartOf="@+id/imgProfile"

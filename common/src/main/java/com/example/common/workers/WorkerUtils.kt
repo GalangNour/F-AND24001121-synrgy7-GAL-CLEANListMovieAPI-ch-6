@@ -16,7 +16,7 @@
 
 @file:JvmName("WorkerUtils")
 
-package com.example.background.workers
+package com.example.common.workers
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -42,7 +42,6 @@ import com.example.common.Constant.NOTIFICATION_TITLE
 import com.example.common.Constant.OUTPUT_PATH
 import com.example.common.Constant.VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION
 import com.example.common.Constant.VERBOSE_NOTIFICATION_CHANNEL_NAME
-import com.example.common.R
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -55,8 +54,7 @@ import java.util.UUID
  * For this codelab, this is used to show a notification so that you know when different steps
  * of the background work chain are starting
  *
- * @param message Message shown on the notification
- * @param context Context needed to create Toast
+
  */
 
 private const val TAG = "WorkerUtils"
@@ -81,7 +79,6 @@ fun makeStatusNotification(message: String, context: Context) {
 
     // Create the notification
     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(NOTIFICATION_TITLE)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

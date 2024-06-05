@@ -1,6 +1,7 @@
 package com.example.challenge_ch6
 
 import android.app.Application
+import com.example.common.SharedPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

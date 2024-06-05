@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.background.workers
+package com.example.common.workers
 
 import android.content.Context
 import android.util.Log

@@ -16,7 +16,7 @@ class GetMovieDetailUseCase @Inject constructor(
             val response = movieRepository.getMovieDetail(movieId)
             emit(Resource.Success(response))
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.challenge_ch6.databinding.FragmentDetailMovieBinding
 import com.example.challenge_ch6.ui.state.MovieDetailState
+import com.example.challenge_ch6.ui.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +33,7 @@ class DetailMovieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentDetailMovieBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -16,7 +16,7 @@ class GetUserUseCase @Inject constructor(
             val response = userRepository.getUser(username)
             emit(Resource.Success(response))
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
     }
 }

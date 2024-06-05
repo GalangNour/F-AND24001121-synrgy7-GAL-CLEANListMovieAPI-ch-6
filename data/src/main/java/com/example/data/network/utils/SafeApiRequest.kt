@@ -17,10 +17,10 @@ abstract class SafeApiRequest {
             responseErr?.let {
                 try {
                     message.append(response.message())
-                }catch (e: JSONException){
+                }catch (_: JSONException){
                 }
                 }
-            Log.d("TAG", "safeApiRequest: ${message.toString()}")
+            Log.d("TAG", "safeApiRequest: $message")
             throw ApiException(message.toString())
         }
     }

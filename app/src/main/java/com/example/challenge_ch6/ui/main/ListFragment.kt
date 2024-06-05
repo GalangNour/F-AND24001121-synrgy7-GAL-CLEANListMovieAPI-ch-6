@@ -8,11 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.challenge_ch6.SharedPreferences
 import com.example.challenge_ch6.databinding.FragmentListBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
 import com.example.challenge_ch6.ui.state.MovieListState
-import com.example.challenge_ch6.ui.state.UserState
+import com.example.challenge_ch6.ui.viewmodel.MovieViewModel
+import com.example.challenge_ch6.ui.viewmodel.UserViewModel
+import com.example.common.SharedPreferences
 import com.example.domain.model.MovieDetail
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +39,7 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,7 +47,10 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setObserver()
+
         initView()
+
 
         viewModel.fetchMoviePlayingNow()
 
@@ -89,6 +93,16 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
         binding.rvMoviePlayingNow.apply {
             itemAnimator = null
             layoutManager = lm
+        }
+    }
+
+    private fun setObserver() {
+        userViewModel.apply {
+            userLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+                if (!isLoggedIn) {
+                    findNavController().navigateUp()
+                }
+            }
         }
     }
 

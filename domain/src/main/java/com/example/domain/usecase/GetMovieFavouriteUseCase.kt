@@ -16,7 +16,7 @@ class GetMovieFavouriteUseCase @Inject constructor(
             val response = movieRepository.getFavoriteMovieList()
             emit(Resource.Success(response))
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
     }
 

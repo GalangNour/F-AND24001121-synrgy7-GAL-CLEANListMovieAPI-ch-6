@@ -15,7 +15,7 @@ class AddFavouriteMovieUseCase @Inject constructor(
             movieRepository.addFavoriteMovie(movie)
             emit(Resource.Success(movie))
     }catch (e: Exception){
-        emit(Resource.Error("Error Occured"))
+        emit(Resource.Error("Error Occurred"))
         }
     }
 

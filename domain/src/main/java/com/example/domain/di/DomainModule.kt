@@ -32,7 +32,7 @@ object DomainModule {
     }
 
     @Provides
-    fun GetMovieFavouriteUseCaset(movieRepository: MovieRepository): GetMovieFavouriteUseCase {
+    fun getMovieFavouriteUseCase(movieRepository: MovieRepository): GetMovieFavouriteUseCase {
         return GetMovieFavouriteUseCase(movieRepository = movieRepository)
     }
 

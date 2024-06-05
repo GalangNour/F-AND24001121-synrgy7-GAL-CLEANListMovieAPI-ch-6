@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge_ch6.databinding.FragmentFavouriteBinding
 import com.example.challenge_ch6.ui.adapter.AdapterMovie
 import com.example.challenge_ch6.ui.state.FavouriteMovieListState
+import com.example.challenge_ch6.ui.viewmodel.MovieViewModel
 import com.example.domain.model.MovieDetail
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +35,7 @@ class FavouriteFragment : Fragment(),AdapterMovie.OnNoteItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -16,12 +16,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.challenge_ch6.SharedPreferences
 import com.example.challenge_ch6.databinding.FragmentUserBinding
 import com.example.challenge_ch6.ui.state.UserState
 import com.example.challenge_ch6.ui.viewmodel.BlurViewModel
 import com.example.challenge_ch6.ui.viewmodel.BlurViewModelFactory
+import com.example.challenge_ch6.ui.viewmodel.UserViewModel
 import com.example.common.Constant
+import com.example.common.SharedPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
@@ -50,7 +51,7 @@ class UserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +60,8 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogout.setOnClickListener {
-            SharedPreferences.isLogin = false
+            userViewModel.logoutUser()
+            findNavController().navigate(UserFragmentDirections.actionUserFragmentToLoginFragment())
         }
 
         setObserver()

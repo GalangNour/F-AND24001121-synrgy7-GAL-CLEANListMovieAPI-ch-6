@@ -1,4 +1,4 @@
-package com.example.challenge_ch6.ui.main
+package com.example.challenge_ch6.ui.viewmodel
 
 import android.content.ContentResolver
 import android.graphics.Bitmap
@@ -8,9 +8,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challenge_ch6.SharedPreferences
 import com.example.challenge_ch6.ui.state.UserState
 import com.example.common.Resource
+import com.example.common.SharedPreferences
 import com.example.domain.usecase.GetUserUseCase
 import com.example.domain.usecase.LoginUserUseCase
 import com.example.domain.usecase.RegisterUserUseCase
@@ -18,6 +18,7 @@ import com.example.domain.usecase.UpdateUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
 
@@ -34,6 +35,10 @@ class UserViewModel @Inject constructor(
 
     val userImage: MutableLiveData<Bitmap> = MutableLiveData()
 
+    private val _userLoggedIn = MutableLiveData<Boolean>()
+    val userLoggedIn: MutableLiveData<Boolean> = _userLoggedIn
+
+
 
     fun updateUserImage(imageUri: Uri, contentResolver: ContentResolver) {
         try {
@@ -47,14 +52,20 @@ class UserViewModel @Inject constructor(
         registerUserUseCase(username, password, email ).launchIn(viewModelScope)
     }
 
+    fun logoutUser() {
+        viewModelScope.launch {
+            SharedPreferences.username = ""
+            userLoggedIn.value = false
+        }
+    }
+
     fun loginUser(username: String, password: String) {
         loginUserUseCase(username, password).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _userState.value = result.data?.let { UserState.Success(it) }
-                    SharedPreferences.isLogin = true
                     SharedPreferences.username = username
-
+                    userLoggedIn.value = true
                 }
                 is Resource.Error -> {
                     Log.e("LoginUser", "Error: ${result.message}")
@@ -62,7 +73,7 @@ class UserViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     Log.d("LoginUser", "Loading")
-                    _userState.value = UserState.Loading()
+                    _userState.value = UserState.Loading
                 }
             }
         }.launchIn(viewModelScope)
@@ -81,7 +92,7 @@ class UserViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     Log.d("GetUserDetail", "Loading")
-                    _userState.value = UserState.Loading()
+                    _userState.value = UserState.Loading
                 }
             }
         }.launchIn(viewModelScope)
@@ -100,7 +111,7 @@ class UserViewModel @Inject constructor(
                 }
                 is Resource.Loading -> {
                     Log.d("UpdateUser", "Loading")
-                    _userState.value = UserState.Loading()
+                    _userState.value = UserState.Loading
                 }
             }
         }.launchIn(viewModelScope)

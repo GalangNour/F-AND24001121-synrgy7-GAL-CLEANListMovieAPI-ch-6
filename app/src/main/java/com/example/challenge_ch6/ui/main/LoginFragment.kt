@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.challenge_ch6.SharedPreferences
+import com.example.challenge_ch6.R
 import com.example.challenge_ch6.databinding.FragmentLoginBinding
 import com.example.challenge_ch6.ui.state.UserState
+import com.example.challenge_ch6.ui.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,13 +35,15 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setObserver()
 
         binding.btnRegisterHere.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
@@ -60,7 +63,6 @@ class LoginFragment : Fragment() {
                     when (state) {
                         is UserState.Success -> {
                             Toast.makeText(requireContext(), "Login Success, welcome back ${state.user.userName}", Toast.LENGTH_SHORT).show()
-                            // Navigate to ListFragment after userCurrent is updated
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToListFragment())
                         }
                         is UserState.Error -> {
@@ -75,15 +77,21 @@ class LoginFragment : Fragment() {
             }
         }
 
-//        binding.buttonLogin.setOnClickListener {
-//            val username = binding.editTextUsername.editText?.text.toString()
-//            val password = binding.editTextPassword.editText?.text.toString()
-//
-//            viewModel.loginUser(username, password)
-//            findNavController().navigateUp()
-//
-//        }
 
+    }
+
+    private fun setObserver() {
+        userViewModel.apply {
+            userLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+                if (isLoggedIn) {
+                    val navController = findNavController()
+                    if (navController.currentDestination?.id == R.id.loginFragment) {
+                        navController.navigate(LoginFragmentDirections.actionLoginFragmentToListFragment())
+                        Toast.makeText(requireContext(), "You Already Logged in", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
