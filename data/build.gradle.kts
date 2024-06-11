@@ -43,6 +43,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":common"))
 
+    debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
+
     //noinspection UseTomlInstead
     implementation("androidx.core:core-ktx:1.12.0")
     //noinspection UseTomlInstead
