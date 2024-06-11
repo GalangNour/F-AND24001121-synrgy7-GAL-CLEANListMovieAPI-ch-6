@@ -12,7 +12,7 @@ class UserRepositoryImpl @Inject constructor(
         return userDao.login(username,password).toDomain()
     }
 
-    override suspend fun register(username: String, password: String, email: String,) {
+    override suspend fun register(username: String, password: String, email: String) {
         userDao.register(username, password, email)
     }
 

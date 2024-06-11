@@ -55,6 +55,10 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.51.1")
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.fragment)
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("io.mockk:mockk:1.12.0")
     //noinspection UseTomlInstead
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
     //noinspection UseTomlInstead

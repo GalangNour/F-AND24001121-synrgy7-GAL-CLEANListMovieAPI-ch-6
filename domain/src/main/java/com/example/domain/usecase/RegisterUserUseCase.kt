@@ -16,7 +16,7 @@ class RegisterUserUseCase @Inject constructor(
             userRepository.register(username, password, email)
             emit(Resource.Success(User(username, password, email)))
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
 
     }

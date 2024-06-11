@@ -16,7 +16,7 @@ class UpdateUserUseCase @Inject constructor(
             userRepository.updateUser(newUsername, newPassword, newEmail, username)
             emit(Resource.Success(User(newUsername, newPassword, newEmail)))
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
     }
 }

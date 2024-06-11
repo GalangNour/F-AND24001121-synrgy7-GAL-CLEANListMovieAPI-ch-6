@@ -74,7 +74,7 @@ class SaveImageToFileWorker(ctx: Context, params: WorkerParameters) : Worker(ctx
         }
     }
 
-    fun bitmapDrawableToBitmap(drawable: BitmapDrawable): Bitmap {
+    private fun bitmapDrawableToBitmap(drawable: BitmapDrawable): Bitmap {
         return drawable.bitmap
     }
 }

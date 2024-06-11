@@ -23,7 +23,7 @@
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="125dp"
-        android:contentDescription="Image Synrgy Logo"
+        android:contentDescription="@string/image_synrgy_logo"
         android:src="@drawable/synrgy_logo"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"

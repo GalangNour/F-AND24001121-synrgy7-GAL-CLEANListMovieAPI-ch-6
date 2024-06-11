@@ -16,4 +16,10 @@
     <string name="login">Login</string>
     <string name="registerHere">Dont have an account yet? Register Here</string>
     <string name="update">Update</string>
+    <string name="image_movie">image movie</string>
+    <string name="button_for_add_to_favourite">Button for add to favourite</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="image_synrgy_logo">Image Synrgy Logo</string>
+    <string name="image_profile">Image Profile, Select to change</string>
+    <string name="image_for_movie">Image for Movie Poster</string>
 </resources>

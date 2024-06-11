@@ -43,15 +43,9 @@ class BlurViewModel(application: Application) : ViewModel() {
     }
 
     internal var imageUri: Uri? = null
-    internal var outputUri: Uri? = null
     private val workManager = WorkManager.getInstance(application)
     internal val outputWorkInfos: LiveData<List<WorkInfo>> = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
 
-
-
-    internal fun cancelWork() {
-        workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)
-    }
 
     /**
      * Creates the input data bundle which includes the Uri to operate on
@@ -108,19 +102,7 @@ class BlurViewModel(application: Application) : ViewModel() {
         continuation.enqueue()
     }
 
-    private fun uriOrNull(uriString: String?): Uri? {
-        return if (!uriString.isNullOrEmpty()) {
-            Uri.parse(uriString)
-        } else {
-            null
-        }
-    }
 
-
-
-    internal fun setOutputUri(outputImageUri: String?) {
-        outputUri = uriOrNull(outputImageUri)
-    }
 }
 
 class BlurViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

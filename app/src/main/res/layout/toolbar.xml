@@ -14,7 +14,7 @@
         android:text="@string/tvWelcome"
         android:textSize="15sp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnLogout"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFavourite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

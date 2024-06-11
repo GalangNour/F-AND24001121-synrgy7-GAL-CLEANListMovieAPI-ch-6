@@ -1,5 +1,6 @@
 package com.example.challenge_ch6.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,8 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
     }
 
 
@@ -73,6 +74,7 @@ class ListFragment : Fragment(), AdapterMovie.OnNoteItemClickListener {
         _binding = null
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
 
         binding.toolbar.tvWelcome.text = "Welcome, ${SharedPreferences.username}"

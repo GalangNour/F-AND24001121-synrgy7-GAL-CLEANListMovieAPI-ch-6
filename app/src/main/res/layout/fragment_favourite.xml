@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/tvPlayingNow"
-                android:text="Now Playing"
+                android:text="@string/now_playing"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"

@@ -1,5 +1,10 @@
+@file:Suppress(
+    "ReplaceGetOrSet"
+)
+
 package com.example.challenge_ch6.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +70,7 @@ class FavouriteFragment : Fragment(),AdapterMovie.OnNoteItemClickListener {
         _binding = null
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         binding.toolbar.btnFavourite.visibility = View.GONE
         binding.toolbar.btnUser.visibility = View.GONE

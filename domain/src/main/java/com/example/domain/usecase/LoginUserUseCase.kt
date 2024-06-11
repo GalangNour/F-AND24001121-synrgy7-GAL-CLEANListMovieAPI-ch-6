@@ -20,7 +20,7 @@ class LoginUserUseCase @Inject constructor(
                 emit(Resource.Error("User not found"))
             }
         }catch (e: Exception){
-            emit(Resource.Error("Error Occured"))
+            emit(Resource.Error("Error Occurred"))
         }
     }
 }

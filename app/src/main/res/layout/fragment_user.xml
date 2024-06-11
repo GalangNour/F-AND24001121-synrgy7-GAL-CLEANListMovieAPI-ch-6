@@ -24,7 +24,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="15dp"
-        android:contentDescription="Image Profile, Select to change"
+        android:contentDescription="@string/image_profile"
         android:src="@drawable/user_1077114"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/editTextUsername"

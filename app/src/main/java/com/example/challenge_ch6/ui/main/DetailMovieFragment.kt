@@ -1,3 +1,7 @@
+@file:Suppress(
+    "ReplaceGetOrSet"
+)
+
 package com.example.challenge_ch6.ui.main
 
 import android.os.Bundle
