@@ -24,6 +24,13 @@ android {
     }
 
     buildTypes {
+
+        create("qa") {
+            initWith(getByName("debug"))
+            isDebuggable = false
+            applicationIdSuffix = ".qa"
+        }
+
         release {
             isShrinkResources = true
             isMinifyEnabled = true
@@ -31,6 +38,22 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    flavorDimensions += "version"
+
+    productFlavors {
+        create("demo"){
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
+        }
+
+        create("paid"){
+            dimension = "version"
+            applicationIdSuffix = ".paid"
+            versionNameSuffix = "-paid"
         }
     }
     buildFeatures{
