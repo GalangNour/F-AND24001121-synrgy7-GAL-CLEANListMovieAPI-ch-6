@@ -4,6 +4,8 @@ plugins {
     id("androidx.navigation.safeargs") version "2.5.3"
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android") version "2.51.1"
+    alias(libs.plugins.google.firebase.firebase.perf)
+    alias(libs.plugins.google.gms.google.services)
 
 }
 
@@ -78,6 +80,7 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.51.1")
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.fragment)
+    implementation(libs.firebase.perf)
     testImplementation("junit:junit:4.12")
     testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
